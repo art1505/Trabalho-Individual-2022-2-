@@ -19,6 +19,7 @@ services:
     image: python:3.8
     build: .
     command: python src/main.py
+    command: tail -f /dev/null
     volumes:
       - .:/app
     ports:
