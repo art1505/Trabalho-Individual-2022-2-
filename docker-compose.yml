@@ -11,8 +11,9 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: lappis
       MONGO_INITDB_ROOT_PASSWORD: lappis
-  
-  services:
+    volumes :
+      - dataBase_mongo:/data/mongo
+
   app:
     container_name: py_container
     image: python:3.8
@@ -24,7 +25,7 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
-
-  volumes:
-    mongodata:
-      driver: local
+  
+volumes :
+  dataBase_mongo :
+    driver : local
