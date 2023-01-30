@@ -34,22 +34,22 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
     
-  docs:
+  #docs:
   
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
+    #runs-on: ubuntu-latest
+    #steps:
+    #- uses: actions/checkout@v3
         
-    - name: Installing docs dependencies 
-      run: |
-        pip install sphinx
-        pip install breathe
-        pip install sphinx_rtd_theme
-    - name: Building Sphinx
-      working-directory: ./source
-      run: |
-        make html
-        make xml
+    #- name: Installing docs dependencies 
+      #run: |
+        #pip install sphinx
+        #pip install breathe
+        #pip install sphinx_rtd_theme
+    #- name: Building Sphinx
+      #working-directory: ./source
+      #run: |
+        #make html
+        #make xml
   
   test:
     runs-on: ubuntu-latest
@@ -77,52 +77,52 @@ jobs:
         flake8 ./src
       continue-on-error: true
         
-  authomatization:
+  #authomatization:
   
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
+    #steps:
+    #- uses: actions/checkout@v3
         
-    - name: Install dependencies 
-      run: |
-        pip install sphinx
-        pip install sphinx-rtd-theme
-        pip install breathe
-        sudo apt install doxygen
-    - name: Generate Documentation
-      working-directory: ./source
-      run: make html
+    #- name: Install dependencies 
+      #run: |
+        #pip install sphinx
+        #pip install sphinx-rtd-theme
+        #pip install breathe
+        #sudo apt install doxygen
+    #- name: Generate Documentation
+      #working-directory: ./source
+      #run: make html
 
-  deploy:
+  #deploy:
 
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.8"
+    #steps:
+    #- uses: actions/checkout@v3
+    #- name: Set up python 3.8
+     # uses: actions/setup-python@v2
+      #with:
+       # python-version: "3.8"
 
-    - name: Update toml
-      run: |
-        version=$(date +%Y%m%d%H%M%S)
-        sed -i "s/^version.*/version = \"$version\"/" pyproject.toml
+    #- name: Update toml
+    #  run: |
+    #    version=$(date +%Y%m%d%H%M%S)
+    #    sed -i "s/^version.*/version = \"$version\"/" pyproject.toml
       
-    - name: Upgrade pip
-      run: |
-         pip install --upgrade pip
-         pip install pytest --upgrade pytest
+    #- name: Upgrade pip
+    #  run: |
+    #     pip install --upgrade pip
+    #     pip install pytest --upgrade pytest
  
           
-    - name: poetry install
-      run: curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
+    #- name: poetry install
+    #  run: curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
 
-    - name: Config poetry
-      run: poetry config http-basic.pypi ${{ secrets.PYPI_TOKEN_USERNAME }} ${{ secrets.PYPI_TOKEN_PASSWORD }}
+    #- name: Config poetry
+    #  run: poetry config http-basic.pypi ${{ secrets.PYPI_TOKEN_USERNAME }} ${{ secrets.PYPI_TOKEN_PASSWORD }}
 
-    - name: Build and Publish
-      run: |
-        poetry build
-        poetry publish
+    #- name: Build and Publish
+    #  run: |
+    #    poetry build
+    #    poetry publish
