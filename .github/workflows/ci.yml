@@ -34,22 +34,22 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
     
-  #docs:
+  docs:
   
-    #runs-on: ubuntu-latest
-    #steps:
-    #- uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
         
-    #- name: Installing docs dependencies 
-      #run: |
-        #pip install sphinx
-        #pip install breathe
-        #pip install sphinx_rtd_theme
-    #- name: Building Sphinx
-      #working-directory: ./source
-      #run: |
-        #make html
-        #make xml
+    - name: Installing docs dependencies 
+      run: |
+        pip install sphinx
+        pip install breathe
+        pip install sphinx_rtd_theme
+    - name: Building Sphinx
+      working-directory: ./build
+      run: |
+        make html
+        make xml
   
   test:
     runs-on: ubuntu-latest
