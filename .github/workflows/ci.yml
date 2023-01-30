@@ -46,7 +46,7 @@ jobs:
         pip install breathe
         pip install sphinx_rtd_theme
     - name: Building Sphinx
-      working-directory: ./sphinx-docs
+      working-directory: ./source
       run: |
         make html
         make xml
@@ -91,7 +91,7 @@ jobs:
         pip install breathe
         sudo apt install doxygen
     - name: Generate Documentation
-      working-directory: ./sphinxdocs
+      working-directory: ./source
       run: make html
 
   deploy:
