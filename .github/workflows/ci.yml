@@ -59,6 +59,23 @@ jobs:
         pip install flake8
         flake8 ./src
       continue-on-error: true
+
+  docs:
+  
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+        
+    - name: Installing docs dependencies 
+      run: |
+        pip install sphinx
+        pip install breathe
+        pip install sphinx_rtd_theme
+    - name: Building Sphinx
+      working-directory: ./sphinx-docs
+      run: |
+        make html
+        make xml
         
   authomatization:
   
